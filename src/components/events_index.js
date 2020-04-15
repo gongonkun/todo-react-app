@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 import { readEvents } from '../actions';
 
 class EventsIndex extends Component {
+  componentDidMount() {
+    this.props.readEvents()
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -20,7 +25,8 @@ class EventsIndex extends Component {
             {this.renderEvents()}
           </tbody>
         </table>
-        <button onClick={this.props.readEvents}>Event取得</button>
+
+        <Link to='/events/new'>New Event</Link>
         <div>{console.log(this.props.events)}</div>
       </React.Fragment>
     );
